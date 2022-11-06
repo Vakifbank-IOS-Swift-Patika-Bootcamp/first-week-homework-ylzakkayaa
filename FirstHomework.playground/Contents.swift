@@ -1,31 +1,21 @@
 import Foundation
 
 //ÖDEV1
-//Küçük büyük harf duyarlılığı var
-func stringPalindrome (word: String) {
-    let palindromeWord = String(word.reversed())
-    
-    if word == palindromeWord {
-        print("Girilen \(word) palindrome'dur.")
-    } else {
-        print("Girilen \(word) palindrom değildir.")
-    }
-}
-
-stringPalindrome(word: "TENET")
-
 //Küçük büyük harf duyarlılığı yok
-func stringPalindrome1 (word: String) {
-    let palindromeWord = String(word.reversed())
+func stringPalindrome (word: String) {
     
-    if word.uppercased() == palindromeWord.uppercased() {
-        print("Girilen \(word) palindrome'dur.")
+    let formattedString = word.replacingOccurrences(of: " ", with: "")
+    let characterString = formattedString.components(separatedBy: CharacterSet.punctuationCharacters).joined(separator: "")
+    let palindromeWord = String(characterString.reversed())
+    
+    if characterString.uppercased() == palindromeWord.uppercased() {
+        print("Girilen \(characterString) palindrome'dur.")
     } else {
-        print("Girilen \(word) palindrom değildir.")
+        print("Girilen \(characterString) palindrom değildir.")
     }
 }
 
-stringPalindrome1(word: "Tenet")
+stringPalindrome(word: "Kesti geveze, tez eve gitsek")
 
 //ÖDEV2
 extension Array where Element: Hashable {
@@ -117,5 +107,3 @@ while i <= limit {
 primeNumbers.sorted()
 var largestPrimeNumber = primeNumbers.last
 print(largestPrimeNumber!)
-
-
